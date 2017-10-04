@@ -1,0 +1,11 @@
+<div [ngSwitch]="todos.length">
+  <p *ngSwitchCase="0">Aucune tâche à réaliser</p>
+  <p *ngSwitchCase="1">Une tâche à réaliser </p>
+  <p *ngSwitchDefault> Lsite des tâches à réaliser</p>
+</div>
+<app-todo-form (newTask)="addTaskToList($event)" (editLst)="editList($event)"></app-todo-form>
+<div *ngFor="let todo of todos">
+  <app-todo-item [todoItem]="todo"></app-todo-item>
+</div>
+<span *ngIf="todos.length > 0">Nombre de tâche afficher = {{todos.length}}</span>
+

@@ -1,0 +1,4 @@
+<div>
+  <label [for]="todoItem.idTodo"><span [class.done]="todoItem.isDone">{{todoItem.title | uppercase}}</span></label>
+  <input type="checkbox" [name]="todoItem.idTodo" [id]="todoItem.idTodo" [(ngModel)]="todoItem.isDone">
+</div>

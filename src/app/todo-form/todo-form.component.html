@@ -1,0 +1,8 @@
+<div>
+  <input type="text" #nouvelleTache (keydown)="keyEvent(nouvelleTache,$event)" placeholder="Nouveau nom de tâche">
+  <button (click)="addTask(nouvelleTache)">Ajouter la tâche</button>
+  <br>
+  <button (click)="removeAllTask()">Supprimer toutes les tâches</button>
+  <br>
+  <button (click)="removeCompleteTask()">Supprimer les tâches complète</button>
+</div>
