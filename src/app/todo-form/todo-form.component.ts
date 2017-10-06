@@ -1,6 +1,7 @@
 import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 import _ from 'lodash';
 import Todo from '../model/Todo';
+import {TodoService} from "../services/TodoService";
 
 @Component({
   selector: 'app-todo-form',
@@ -8,6 +9,7 @@ import Todo from '../model/Todo';
   styleUrls: ['./todo-form.component.css']
 })
 export class TodoFormComponent implements OnInit {
+  constructor(private todoService:TodoService) {}
   @Output()
   newTask: EventEmitter<Todo> = new EventEmitter<Todo>();
 
@@ -15,7 +17,8 @@ export class TodoFormComponent implements OnInit {
     const taskname: string = task.value;
     if (!_.isEmpty(taskname.trim())) {
       task.value = '';
-      this.newTask.emit(new Todo(taskname, false, _.replace(taskname, ' ', '_')))
+      this.todoService.addTodo(new Todo(taskname));
+      /*this.newTask.emit(new Todo(taskname, false, _.replace(taskname, ' ', '_')))*/
     }
   }
   keyEvent(task,event){
@@ -30,8 +33,6 @@ export class TodoFormComponent implements OnInit {
   }
   removeCompleteTask(){
     this.editLst.emit('deleteCompleted');
-  }
-  constructor() {
   }
 
   ngOnInit() {

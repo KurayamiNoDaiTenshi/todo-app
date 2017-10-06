@@ -13,7 +13,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.todoItem.idTodo = _.replace(this.todoItem.title, ' ', '_');
   }
 
 }

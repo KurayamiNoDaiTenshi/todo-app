@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import Todo from '../model/Todo';
-
+import {TodoService} from '../services/TodoService';
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
@@ -9,7 +9,7 @@ import Todo from '../model/Todo';
 export class TodoListComponent implements OnInit {
   todos: Array<Todo> = [];
 
-  constructor() {
+  constructor( private todoService:TodoService) {
   }
 
   addTaskToList(event) {
@@ -17,7 +17,7 @@ export class TodoListComponent implements OnInit {
   }
 
   removeDoneTask(): void {
-    this.todos = this.todos.filter((todo) => {
+    this.todos = this.todos.filter(todo => {
       return !todo.isDone;
     })
   }
@@ -32,5 +32,8 @@ export class TodoListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.todoService.getTodos().then(todos=>{
+      this.todos = todos;
+    })
   }
 }
